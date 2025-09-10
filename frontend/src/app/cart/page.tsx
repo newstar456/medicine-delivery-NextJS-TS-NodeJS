@@ -33,7 +33,7 @@ export default function CartPage() {
         email,
         phone,
         address,
-        items: items.map((i) => ({ id: i.medicineId, quantity: i.quantity })),
+        items: items.map((i) => ({ id: i.id, quantity: i.quantity })),
       });
 
       dispatch(clearCart());
@@ -61,7 +61,7 @@ export default function CartPage() {
         <AnimatePresence>
           {items.map((item) => (
             <motion.li
-              key={item.medicineId}
+              key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -79,12 +79,12 @@ export default function CartPage() {
                   min={1}
                   value={item.quantity}
                   onChange={(e) =>
-                    dispatch(updateQuantity({ medicineId: item.medicineId, quantity: Number(e.target.value) }))
+                    dispatch(updateQuantity({ id: item.id, quantity: Number(e.target.value) }))
                   }
                   className="w-16 text-center border rounded"
                 />
                 <button
-                  onClick={() => dispatch(removeFromCart(item.medicineId))}
+                  onClick={() => dispatch(removeFromCart(item.id))}
                   className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg"
                 >
                   ✕

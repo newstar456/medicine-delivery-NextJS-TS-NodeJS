@@ -3,17 +3,19 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage
 import drugstoresReducer from './slices/drugstoresSlice';
 import cartReducer from "./slices/cartSlice";
+import medicinesReducer from "./slices/medicinesSlice";
 
 
 const rootReducer = combineReducers({
   drugstores: drugstoresReducer,
   cart: cartReducer,
+  medicines: medicinesReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['drugstores'], // persist drugstores
+  whitelist: ['drugstores', 'medicines', 'cart'],
 };
 
 

@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
-  medicineId: number;
+  id: number; 
   name: string;
   price: number;
   quantity: number;
 }
-
 interface CartState {
   items: CartItem[];
 }
@@ -18,7 +17,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const existing = state.items.find(i => i.medicineId === action.payload.medicineId);
+      const existing = state.items.find(i => i.id === action.payload.id);
       if (existing) {
         existing.quantity += action.payload.quantity;
       } else {
@@ -26,10 +25,10 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter(i => i.medicineId !== action.payload);
+      state.items = state.items.filter(i => i.id !== action.payload);
     },
-    updateQuantity: (state, action: PayloadAction<{ medicineId: number; quantity: number }>) => {
-      const item = state.items.find(i => i.medicineId === action.payload.medicineId);
+    updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+      const item = state.items.find(i => i.id === action.payload.id);
       if (item) {
         item.quantity = action.payload.quantity;
       }

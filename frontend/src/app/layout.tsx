@@ -1,5 +1,7 @@
 import ReduxProvider from "@/components/ReduxProvider";
 import Header from "@/components/Header";
+import './globals.css'
+
 
 export const metadata = {
   title: 'My Pharmacy App',
